@@ -1,0 +1,243 @@
+
+
+      html {
+        height: 100%;
+        width: 100%;
+      }
+
+      body {
+        font-family: 'Open Sans', serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        -webkit-font-smoothing: antialiased;
+        overflow: -moz-scrollbars-none;
+        -ms-overflow-style: none;
+      }
+
+      
+
+      .main {
+
+      display: block;
+      position: absolute;
+      box-sizing: content-box;
+      -ms-transform: rotate(0.00deg);
+    -webkit-transform: rotate(0.00deg);
+    transform: rotate(0.00deg);
+    -ms-transform-origin: center;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+      opacity: 1;
+      cursor: default;
+      margin-top: 0.00px;
+      margin-right: 0.00px;
+      margin-bottom: 0.00px;
+      margin-left: 0.00px;
+      padding-top: 0.00px;
+      padding-right: 0.00px;
+      padding-bottom: 0.00px;
+      padding-left: 0.00px;
+      overflow-x: auto;
+      overflow-y: auto;
+      background-color: rgba(255, 255, 255, 1);
+      width: 1920.00px;
+    height: 1080.00px;
+    left: 0px;
+    top: 0px;
+
+}
+
+.main .contact {
+    position: absolute;
+      box-sizing: content-box;
+      -ms-transform: rotate(0.00deg);
+    -webkit-transform: rotate(0.00deg);
+    transform: rotate(0.00deg);
+    -ms-transform-origin: center;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+      background-image: url("assets/contact.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+      opacity: 1;
+      cursor: default;
+      margin-top: 0.00px;
+      margin-right: 0.00px;
+      margin-bottom: 0.00px;
+      margin-left: 0.00px;
+      padding-top: 0.00px;
+      padding-right: 0.00px;
+      padding-bottom: 0.00px;
+      padding-left: 0.00px;
+      background-color: rgba(255, 255, 255, 0);
+      border-bottom-color: rgba(112, 112, 112, 1);
+      border-bottom-style: none;
+      border-bottom-width: 1.00px;
+      border-left-color: rgba(112, 112, 112, 1);
+      border-left-style: none;
+      border-left-width: 1.00px;
+      border-right-color: rgba(112, 112, 112, 1);
+      border-right-style: none;
+      border-right-width: 1.00px;
+      border-top-color: rgba(112, 112, 112, 1);
+      border-top-style: none;
+      border-top-width: 1.00px;
+      border-top-left-radius: 0.00px;
+      border-top-right-radius: 0.00px;
+      border-bottom-left-radius: 0.00px;
+      border-bottom-right-radius: 0.00px;
+      box-shadow: none;
+      width: 477.00px;
+    height: 236.00px;
+    left: 1199.00px;
+    top: 608.00px;
+
+}
+
+.main .myWorks {
+    position: absolute;
+      box-sizing: content-box;
+      -ms-transform: rotate(0.00deg);
+    -webkit-transform: rotate(0.00deg);
+    transform: rotate(0.00deg);
+    -ms-transform-origin: center;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+      background-image: url("assets/myWorks.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+      opacity: 1;
+      cursor: default;
+      margin-top: 0.00px;
+      margin-right: 0.00px;
+      margin-bottom: 0.00px;
+      margin-left: 0.00px;
+      padding-top: 0.00px;
+      padding-right: 0.00px;
+      padding-bottom: 0.00px;
+      padding-left: 0.00px;
+      background-color: rgba(255, 255, 255, 0);
+      border-bottom-color: rgba(112, 112, 112, 1);
+      border-bottom-style: none;
+      border-bottom-width: 1.00px;
+      border-left-color: rgba(112, 112, 112, 1);
+      border-left-style: none;
+      border-left-width: 1.00px;
+      border-right-color: rgba(112, 112, 112, 1);
+      border-right-style: none;
+      border-right-width: 1.00px;
+      border-top-color: rgba(112, 112, 112, 1);
+      border-top-style: none;
+      border-top-width: 1.00px;
+      border-top-left-radius: 0.00px;
+      border-top-right-radius: 0.00px;
+      border-bottom-left-radius: 0.00px;
+      border-bottom-right-radius: 0.00px;
+      box-shadow: none;
+      width: 475.00px;
+    height: 136.00px;
+    left: 723.00px;
+    top: 608.00px;
+
+}
+
+.main .about {
+    position: absolute;
+      box-sizing: content-box;
+      -ms-transform: rotate(0.00deg);
+    -webkit-transform: rotate(0.00deg);
+    transform: rotate(0.00deg);
+    -ms-transform-origin: center;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+      background-image: url("assets/about.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+      opacity: 1;
+      cursor: default;
+      margin-top: 0.00px;
+      margin-right: 0.00px;
+      margin-bottom: 0.00px;
+      margin-left: 0.00px;
+      padding-top: 0.00px;
+      padding-right: 0.00px;
+      padding-bottom: 0.00px;
+      padding-left: 0.00px;
+      background-color: rgba(255, 255, 255, 0);
+      border-bottom-color: rgba(112, 112, 112, 1);
+      border-bottom-style: none;
+      border-bottom-width: 1.00px;
+      border-left-color: rgba(112, 112, 112, 1);
+      border-left-style: none;
+      border-left-width: 1.00px;
+      border-right-color: rgba(112, 112, 112, 1);
+      border-right-style: none;
+      border-right-width: 1.00px;
+      border-top-color: rgba(112, 112, 112, 1);
+      border-top-style: none;
+      border-top-width: 1.00px;
+      border-top-left-radius: 0.00px;
+      border-top-right-radius: 0.00px;
+      border-bottom-left-radius: 0.00px;
+      border-bottom-right-radius: 0.00px;
+      box-shadow: none;
+      width: 401.00px;
+    height: 205.00px;
+    left: 998.00px;
+    top: 403.00px;
+
+}
+
+.main .white {
+    position: absolute;
+      box-sizing: content-box;
+      -ms-transform: rotate(0.00deg);
+    -webkit-transform: rotate(0.00deg);
+    transform: rotate(0.00deg);
+    -ms-transform-origin: center;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+      background-image: url("assets/white.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+      opacity: 1;
+      cursor: default;
+      margin-top: 0.00px;
+      margin-right: 0.00px;
+      margin-bottom: 0.00px;
+      margin-left: 0.00px;
+      padding-top: 0.00px;
+      padding-right: 0.00px;
+      padding-bottom: 0.00px;
+      padding-left: 0.00px;
+      background-color: rgba(255, 255, 255, 0);
+      border-bottom-color: rgba(112, 112, 112, 1);
+      border-bottom-style: none;
+      border-bottom-width: 1.00px;
+      border-left-color: rgba(112, 112, 112, 1);
+      border-left-style: none;
+      border-left-width: 1.00px;
+      border-right-color: rgba(112, 112, 112, 1);
+      border-right-style: none;
+      border-right-width: 1.00px;
+      border-top-color: rgba(112, 112, 112, 1);
+      border-top-style: none;
+      border-top-width: 1.00px;
+      border-top-left-radius: 0.00px;
+      border-top-right-radius: 0.00px;
+      border-bottom-left-radius: 0.00px;
+      border-bottom-right-radius: 0.00px;
+      box-shadow: none;
+      width: 265.00px;
+    height: 265.00px;
+    left: 308.00px;
+    top: 275.00px;
+
+}
+
