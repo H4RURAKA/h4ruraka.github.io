@@ -1,180 +1,87 @@
-<!DOCTYPE html>
-<html lang="ko">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>H4RURAKA</title>
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<canvas id="particle-canvas"></canvas>
+<!doctype html>
+<html lang="en">
 
-		<div class="dark-mode-switcher">
-			<label class="switch">
-				<input type="checkbox" id="dark-mode-toggle" />
-				<span class="slider round"></span>
-			</label>
-			<span id="mode-text">DARK MODE</span>
-		</div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liquid Monochrome Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="./script.js" defer></script>
+</head>
 
-		<section id="home">
-			<h1 id="typing-effect"></h1>
-			<h2 id="sub-typing-effect">ㅤ</h2>
-			<br />
+<body>
+  <svg class="liquid-defs" aria-hidden="true">
+    <filter id="liquidWarp">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="2" seed="7" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="24" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </svg>
 
-			<nav>
-				<ul>
-					<li><a href="#introduction">Introduction</a></li>
-					<!-- // <li><a href="#skills">Skills</a></li> // -->
-					<li>
-						<a href="#education-achievements"
-							>Education&Achievements</a
-						>
-					</li>
-					<li><a href="#contact">Contact</a></li>
-				</ul>
-			</nav>
-		</section>
+  <div class="noise" aria-hidden="true"></div>
+  <div id="dotfield" aria-hidden="true"></div>
 
-		<section id="introduction" class="content-section">
-			<h2>Introduction</h2>
-			<!-- <div class="intro-left">
-				<img
-					src="path/to/your-photo.jpg"
-					alt="Photo"
-					class="profile-photo" />
-			</div> -->
-			<div class="intro-right">
-				<p class="intro-text">
-					Hello, my name is YoonseoHwang. I am studying Software
-					Engineering at Sungkyunkwan Univ. I am interested in
-					Web3 System Security. Also in
-					Design.
-				</p>
-				<br />
-				<p class="thx">Thank you for visiting here.</p>
-			</div>
-		</section>
+  <main class="studio">
+    <header class="meta-strip">
+      <span>Glass Material / Monochrome</span>
+      <span>Graphic Design / Intentional Friction</span>
+    </header>
 
-		<section id="skills" class="content-section" style="display:none;">
-			<h2>My Skills</h2>
-			<div class="skill">
-				<div class="skill-name">C language</div>
-				<div class="skill-bar">
-					<div
-						class="skill-percentage"
-						style="width: 0%"
-						data-target="75"></div>
-				</div>
-			</div>
-			<div class="skill">
-				<div class="skill-name">Java</div>
-				<div class="skill-bar">
-					<div
-						class="skill-percentage"
-						style="width: 0%"
-						data-target="40"></div>
-				</div>
-			</div>
-			<div class="skill">
-				<div class="skill-name">JavaScript</div>
-				<div class="skill-bar">
-					<div
-						class="skill-percentage"
-						style="width: 0%"
-						data-target="80"></div>
-				</div>
-			</div>
-			<div class="skill">
-				<div class="skill-name">React</div>
-				<div class="skill-bar">
-					<div
-						class="skill-percentage"
-						style="width: 0%"
-						data-target="30"></div>
-				</div>
-			</div>
-		</section>
+    <section class="composition">
+      <div class="liquid-layer layer-a" data-layer="12"></div>
+      <div class="liquid-layer layer-b" data-layer="20"></div>
+      <div class="liquid-layer layer-c" data-layer="16"></div>
 
-		<section id="education-achievements" class="content-section">
-			<h2>Education&Achievements</h2>
-			<div class="timeline">
-				<div class="timeline-item left" data-year="2001">
-					<div class="timeline-content">
-						<p>
-							Born in Seoul, Korea
-							<span class="timeline-content-mobile">in 2001</span>
-						</p>
-					</div>
-				</div>
-				<div class="timeline-item right" data-year="2017">
-					<div class="timeline-content">
-						<p>
-							Obtained Linux Master 2 certification
-							<span class="timeline-content-mobile">in 2017</span>
-						</p>
-					</div>
-				</div>
-				<div class="timeline-item left" data-year="2019">
-					<div class="timeline-content">
-						<p>
-							Graduated Myungduk Highschool
-							<span class="timeline-content-mobile">in 2019</span>
-						</p>
-					</div>
-				</div>
-				<div class="timeline-item right" data-year="2020">
-					<div class="timeline-content">
-						<p>
-							Admitted to the Software Department at SKKU.
-							<span class="timeline-content-mobile">in 2020</span>
-						</p>
-					</div>
-				</div>
-				<div class="timeline-item left" data-year="2022">
-					<div class="timeline-content">
-						<p>
-							Army sergeant, honorable discharge
-							<span class="timeline-content-mobile">in 2022</span>
-						</p>
-					</div>
-				</div>
-			</div>
-		</section>
+      <a class="glass-slab slab-a phase-link" href="./phase1/index.html" data-slab data-depth="22" data-rot="-12">
+        <p>phase / 01</p>
+        <h2>Hex Mesh Blocks</h2>
+      </a>
 
-		<section id="contact" class="content-section">
-			<h2>Contact Me</h2>
-			<div class="contact">
-				<ul>
-					<li><span class="label">Phone</span> +82-10-6236-3684</li>
-					<li><span class="label">Email</span> qwdfgqw@gmail.com</li>
-					<li><span class="label">Github</span> H4RURAKA</li>
-					<li><span class="label">Behance</span> H4RURAKA</li>
-				</ul>
-			</div>
-			<br />
-			<div class="links">
-				<ul>
-					<li><a href="https://github.com/H4RURAKA">Github</a></li>
-					<li><a href="https://be.net/h4ruraka">Behance</a></li>
-					<li>
-						<a href="https://www.instagram.com/haruraka/"
-							>Instagram</a
-						>
-					</li>
-					<li>
-						<a
-							href="https://www.youtube.com/channel/UCxKjRyQw3_Jq2YH83sYQVNQ"
-							>Youtube</a
-						>
-					</li>
-					<li>
-						<a href="https://soundcloud.com/h4ruraka">Soundcloud</a>
-					</li>
-				</ul>
-			</div>
-		</section>
+      <a class="glass-slab slab-b phase-link" href="./phase2/index.html" data-slab data-depth="34" data-rot="9">
+        <p>phase / 02</p>
+        <h2>Raster Fold</h2>
+      </a>
 
-		<script src="script.js"></script>
-	</body>
+      <a class="glass-slab slab-c phase-link" href="./phase3/index.html" data-slab data-depth="18" data-rot="-20">
+        <p>phase / 03</p>
+        <h2>Type Orbit</h2>
+      </a>
+
+      <a class="glass-slab slab-d phase-link" href="./phase4/index.html" data-slab data-depth="16" data-rot="7">
+        <p>phase / inf</p>
+        <h2>CONTACT</h2>
+      </a>
+
+      <h1 class="headline headline-main" data-headline>
+        <span>LIQUID</span>
+        <span>MONOCHROME</span>
+        <span>DISTORTION</span>
+      </h1>
+
+      <h1 class="headline headline-ghost" aria-hidden="true">
+        <span>SOLID</span>
+        <span>VIBRANT</span>
+        <span>CLEAN</span>
+      </h1>
+
+      <p class="manifesto">
+        This is from H4RU's WRLD. Aesthetic is everything.
+        <br>H4RU of Muon Studio: we artist, we do art, we art
+      </p>
+
+      <p class="manifesto manifesto-ghost" aria-hidden="true">
+        Baseline is grayscale. Readability is intentionally degraded.
+      </p>
+
+      <div class="glyph glyph--x">X</div>
+      <div class="glyph glyph--n">H4RU</div>
+    </section>
+
+  </main>
+</body>
+
 </html>

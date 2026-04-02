@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phase 02 - Raster Fold</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;600&family=Manrope:wght@400;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../shared/fx.css" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="../shared/fx.js" defer></script>
+  <script src="./script.js" defer></script>
+</head>
+
+<body>
+  <div class="paper-noise" aria-hidden="true"></div>
+  <svg class="distortion-defs" aria-hidden="true">
+    <filter id="bgDistort" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.024 0.046" numOctaves="3" seed="17" result="noise">
+        <animate attributeName="baseFrequency" dur="14s" values="0.024 0.046;0.038 0.072;0.024 0.046"
+          repeatCount="indefinite" />
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="56" xChannelSelector="R" yChannelSelector="G">
+        <animate attributeName="scale" dur="10s" values="48;68;48" repeatCount="indefinite" />
+      </feDisplacementMap>
+    </filter>
+  </svg>
+  <div class="distortion-layer" aria-hidden="true"></div>
+  <div class="distortion-chroma" aria-hidden="true"></div>
+  <div class="magnify-stage" aria-hidden="true">
+    <div class="magnify-content magnify-content-outer" id="magnifyContent"></div>
+    <div class="magnify-core">
+      <div class="magnify-content magnify-content-core" id="magnifyContentCore"></div>
+    </div>
+  </div>
+  <div class="water-lens" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a href="../index.html">Back</a>
+    <span>PHASE 02</span>
+  </header>
+
+  <main class="page">
+    <section class="intro">
+      <p class="kicker">VISUAL SYSTEM / 02</p>
+      <h1>RASTER FOLD</h1>
+      <p class="desc">
+        Angular print field built from moving blades, strict grid pressure, and focal lens interference.
+      </p>
+
+        <section class="readout">
+          <article>
+            <small>Parallax Shear</small>
+            <h2 id="tilt">+02.0°</h2>
+          </article>
+          <article>
+            <small>Field Saturation</small>
+            <h2 id="density">58%</h2>
+          </article>
+        <article>
+          <small>Mood</small>
+          <h2 id="mode">engrave</h2>
+        </article>
+      </section>
+    </section>
+
+    <section class="panel" id="panel" aria-label="Raster fold composition">
+      <div class="mesh" id="mesh"></div>
+
+      <div class="blade blade-a" data-blade><span>axis / 01</span></div>
+      <div class="blade blade-b" data-blade><span>axis / 02</span></div>
+      <div class="blade blade-c" data-blade><span>axis / 03</span></div>
+      <div class="blade blade-d" data-blade><span>axis / 04</span></div>
+
+    </section>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phase 01 - Hex Mesh Blocks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=IBM+Plex+Mono:wght@400;600&family=Manrope:wght@400;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../shared/fx.css" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="../shared/fx.js" defer></script>
+  <script src="./script.js" defer></script>
+</head>
+
+<body>
+  <svg class="distortion-defs" aria-hidden="true">
+    <filter id="bgDistort" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.024 0.046" numOctaves="3" seed="17" result="noise">
+        <animate attributeName="baseFrequency" dur="14s" values="0.024 0.046;0.038 0.072;0.024 0.046"
+          repeatCount="indefinite" />
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="56" xChannelSelector="R" yChannelSelector="G">
+        <animate attributeName="scale" dur="10s" values="48;68;48" repeatCount="indefinite" />
+      </feDisplacementMap>
+    </filter>
+  </svg>
+  <div class="distortion-layer" aria-hidden="true"></div>
+  <div class="distortion-chroma" aria-hidden="true"></div>
+  <div class="magnify-stage" aria-hidden="true">
+    <div class="magnify-content magnify-content-outer" id="magnifyContent"></div>
+    <div class="magnify-core">
+      <div class="magnify-content magnify-content-core" id="magnifyContentCore"></div>
+    </div>
+  </div>
+  <div class="water-lens" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a href="../index.html">Back</a>
+    <span>PHASE 01</span>
+  </header>
+
+  <main class="page">
+    <section class="intro">
+      <p class="kicker">HEX GRID / 01</p>
+      <h1>HEX MESH BLOCKS</h1>
+      <p class="desc">Honeycomb field with rising prism blocks. Stable structure, reactive depth.</p>
+
+      <section class="readout">
+        <article><small>Lattice Census</small>
+          <h2 id="cells">000</h2>
+        </article>
+        <article><small>Resonance Flux</small>
+          <h2 id="pulse">00%</h2>
+        </article>
+        <article><small>Mood</small>
+          <h2 id="mode">idle</h2>
+        </article>
+      </section>
+    </section>
+
+    <section class="scene" id="scene" aria-label="Hex mesh scene">
+      <canvas id="hexCanvas" class="scene-canvas" aria-hidden="true"></canvas>
+    </section>
+  </main>
+</body>
+
+</html>

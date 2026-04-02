@@ -1,0 +1,265 @@
+:root {
+  --lens-x: 50vw;
+  --lens-y: 50vh;
+  --lens-size: 0px;
+  --lens-opacity: 0;
+  --fx-motion: 0;
+  --fx-base-bg: #ffffff;
+  --fx-distort-light: rgba(255, 255, 255, 0.74);
+  --fx-distort-dark: rgba(0, 0, 0, 0.32);
+  --fx-distort-angle: 110deg;
+  --fx-distort-line: rgba(255, 255, 255, 0.14);
+  --fx-distort-opacity: 0.78;
+  --fx-chroma-opacity: 0.44;
+}
+
+.distortion-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.distortion-layer,
+.distortion-chroma,
+.magnify-stage,
+.water-lens {
+  contain: paint;
+}
+
+.distortion-layer {
+  position: fixed;
+  inset: -4%;
+  z-index: 5;
+  pointer-events: none;
+  opacity: var(--fx-distort-opacity);
+  background:
+    radial-gradient(circle at 24% 26%, var(--fx-distort-light), transparent 38%),
+    radial-gradient(circle at 78% 74%, var(--fx-distort-dark), transparent 46%),
+    repeating-linear-gradient(var(--fx-distort-angle), var(--fx-distort-line) 0 2px, transparent 2px 7px);
+  mix-blend-mode: overlay;
+  filter: url(#bgDistort) blur(0.2px) saturate(1.14);
+  animation: distortionDrift 16s ease-in-out infinite alternate;
+  -webkit-mask-image: radial-gradient(
+    circle calc(var(--lens-size) * 0.56) at var(--lens-x) var(--lens-y),
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 62%,
+    rgba(0, 0, 0, 0.4) 76%,
+    rgba(0, 0, 0, 0.84) 90%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  mask-image: radial-gradient(
+    circle calc(var(--lens-size) * 0.56) at var(--lens-x) var(--lens-y),
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 62%,
+    rgba(0, 0, 0, 0.4) 76%,
+    rgba(0, 0, 0, 0.84) 90%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+.distortion-chroma {
+  position: fixed;
+  inset: -4%;
+  z-index: 5;
+  pointer-events: none;
+  opacity: var(--fx-chroma-opacity);
+  background:
+    radial-gradient(circle at 18% 22%, rgba(72, 210, 255, 0.46), transparent 35%),
+    radial-gradient(circle at 82% 26%, rgba(255, 94, 162, 0.4), transparent 36%),
+    radial-gradient(circle at 56% 82%, rgba(255, 212, 112, 0.32), transparent 39%);
+  mix-blend-mode: screen;
+  filter: url(#bgDistort) blur(1.5px) saturate(1.6);
+  animation: distortionChroma 11s ease-in-out infinite alternate;
+  -webkit-mask-image: radial-gradient(
+    circle calc(var(--lens-size) * 0.56) at var(--lens-x) var(--lens-y),
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 62%,
+    rgba(0, 0, 0, 0.4) 76%,
+    rgba(0, 0, 0, 0.84) 90%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  mask-image: radial-gradient(
+    circle calc(var(--lens-size) * 0.56) at var(--lens-x) var(--lens-y),
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 62%,
+    rgba(0, 0, 0, 0.4) 76%,
+    rgba(0, 0, 0, 0.84) 90%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+@keyframes distortionDrift {
+  0% {
+    transform: translate3d(-4.2%, -2.6%, 0) scale(1.06);
+  }
+  50% {
+    transform: translate3d(2.8%, 2.5%, 0) scale(1.1);
+  }
+  100% {
+    transform: translate3d(-2.4%, 3.1%, 0) scale(1.07);
+  }
+}
+
+@keyframes distortionChroma {
+  0% {
+    transform: translate3d(2.2%, -1.4%, 0) scale(1.08);
+  }
+  50% {
+    transform: translate3d(-1.8%, 2.3%, 0) scale(1.12);
+  }
+  100% {
+    transform: translate3d(1.4%, 3.1%, 0) scale(1.09);
+  }
+}
+
+.magnify-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  opacity: var(--lens-opacity);
+  overflow: hidden;
+  isolation: isolate;
+  clip-path: circle(calc(var(--lens-size) * 0.5) at var(--lens-x) var(--lens-y));
+  -webkit-clip-path: circle(calc(var(--lens-size) * 0.5) at var(--lens-x) var(--lens-y));
+}
+
+.magnify-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  background: var(--fx-base-bg);
+}
+
+.magnify-content {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: transparent;
+  transform-origin: var(--lens-x) var(--lens-y);
+  will-change: transform;
+}
+
+.magnify-content-outer {
+  z-index: 1;
+  transform: scale(1.09);
+  filter: none;
+  -webkit-mask-image: radial-gradient(
+    circle calc(var(--lens-size) * 0.5) at var(--lens-x) var(--lens-y),
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 62%,
+    rgba(0, 0, 0, 0.9) 76%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  mask-image: radial-gradient(
+    circle calc(var(--lens-size) * 0.5) at var(--lens-x) var(--lens-y),
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 62%,
+    rgba(0, 0, 0, 0.9) 76%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+.magnify-core {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  pointer-events: none;
+}
+
+.magnify-core::after {
+  content: "";
+  position: absolute;
+  left: var(--lens-x);
+  top: var(--lens-y);
+  width: calc(var(--lens-size) * 0.68);
+  height: calc(var(--lens-size) * 0.68);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  display: none;
+}
+
+.magnify-content-core {
+  z-index: 2;
+  display: block;
+  transform: scale(1.14);
+  filter: none;
+  -webkit-mask-image: radial-gradient(
+    circle calc(var(--lens-size) * 0.48) at var(--lens-x) var(--lens-y),
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0) 78%
+  );
+  mask-image: radial-gradient(
+    circle calc(var(--lens-size) * 0.48) at var(--lens-x) var(--lens-y),
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0) 78%
+  );
+}
+
+.water-lens {
+  position: fixed;
+  left: var(--lens-x);
+  top: var(--lens-y);
+  width: var(--lens-size);
+  height: var(--lens-size);
+  z-index: 7;
+  pointer-events: none;
+  border-radius: 50%;
+  opacity: var(--lens-opacity);
+  transform: translate(-50%, -50%) scale(1.08);
+  border: 0;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  transition: opacity 180ms ease-out;
+  display: none;
+}
+
+.water-lens::before,
+.water-lens::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.water-lens::before {
+  display: none;
+}
+
+.water-lens::after {
+  display: none;
+}
+
+:root.fx-idle .magnify-stage,
+:root.fx-idle .water-lens {
+  display: none;
+}
+
+@media (pointer: coarse) {
+  .magnify-stage,
+  .water-lens {
+    display: none;
+  }
+
+  .distortion-layer,
+  .distortion-chroma {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .distortion-layer,
+  .distortion-chroma {
+    animation: none;
+  }
+}

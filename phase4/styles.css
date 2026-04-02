@@ -1,0 +1,623 @@
+:root {
+  --paper-0: #f4f2ea;
+  --paper-1: #e9e5da;
+  --ink: #121210;
+  --muted: rgba(18, 18, 16, 0.64);
+  --line: rgba(18, 18, 16, 0.28);
+  --line-soft: rgba(18, 18, 16, 0.14);
+  --panel: rgba(255, 255, 255, 0.44);
+  --split-x-pos: 0px;
+  --split-y-pos: 0px;
+  --split-x-neg: 0px;
+  --split-y-neg: 0px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  position: relative;
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 14% 12%, rgba(255, 255, 255, 0.9), transparent 30%),
+    radial-gradient(circle at 84% 80%, rgba(0, 0, 0, 0.08), transparent 36%),
+    linear-gradient(156deg, var(--paper-0), var(--paper-1));
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: -8%;
+  pointer-events: none;
+}
+
+body::before {
+  z-index: 1;
+  opacity: 0.18;
+  background:
+    repeating-linear-gradient(98deg, rgba(0, 0, 0, 0.18) 0 1px, transparent 1px 23px),
+    repeating-linear-gradient(-11deg, rgba(255, 255, 255, 0.34) 0 2px, transparent 2px 17px);
+  mix-blend-mode: multiply;
+  transform: rotate(-1.2deg) scale(1.06);
+}
+
+body::after {
+  z-index: 1;
+  opacity: 0.22;
+  background:
+    radial-gradient(circle at 18% 76%, rgba(0, 0, 0, 0.16), transparent 34%),
+    radial-gradient(circle at 78% 22%, rgba(255, 255, 255, 0.34), transparent 28%),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.08) 0 1px, transparent 1px 6px);
+}
+
+.grain,
+.grid,
+.echo,
+.logo-orb {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.grain {
+  z-index: 0;
+  opacity: 0.2;
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.22) 0.5px, transparent 0.5px),
+    radial-gradient(rgba(255, 255, 255, 0.8) 0.7px, transparent 0.7px);
+  background-size: 3px 3px, 4px 4px;
+}
+
+.grid {
+  z-index: 0;
+  opacity: 0.24;
+  background-image:
+    linear-gradient(90deg, rgba(18, 18, 16, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(18, 18, 16, 0.08) 1px, transparent 1px);
+  background-size: 56px 56px, 56px 56px;
+}
+
+.echo {
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(9rem, 34vw, 28rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(16, 16, 15, 0.05);
+  user-select: none;
+  transform: skew(-4deg, 0deg);
+}
+
+.logo-orb {
+  z-index: 1;
+  inset: auto;
+  width: clamp(250px, 36vw, 560px);
+  aspect-ratio: 1;
+  right: clamp(-140px, -9vw, -52px);
+  top: clamp(34px, 9vh, 110px);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 24%, rgba(255, 255, 255, 0.56), rgba(255, 255, 255, 0) 46%),
+    url("../src/logo.jpeg") center/cover no-repeat;
+  filter: grayscale(1) contrast(1.08) blur(1.4px);
+  opacity: 0.12;
+  mix-blend-mode: multiply;
+  clip-path: polygon(8% 0, 72% 6%, 100% 24%, 92% 88%, 61% 100%, 10% 92%, 0 66%, 4% 26%);
+}
+
+.frame {
+  position: relative;
+  z-index: 2;
+  width: min(1160px, calc(100% - 2rem));
+  height: calc(100% - 2rem);
+  margin: 1rem auto;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: clamp(0.9rem, 2.2vh, 1.24rem);
+  padding: clamp(0.95rem, 2.1vw, 1.55rem);
+  border: 1px solid var(--line-soft);
+  background:
+    linear-gradient(164deg, rgba(255, 255, 255, 0.48), rgba(237, 232, 220, 0.64));
+  overflow: hidden;
+  transform: rotate(-1.05deg) skewX(-0.2deg);
+}
+
+.frame::before,
+.frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.frame::before {
+  background:
+    linear-gradient(124deg, rgba(255, 255, 255, 0.5), transparent 34%, rgba(0, 0, 0, 0.09) 72%, transparent 90%),
+    repeating-linear-gradient(87deg, rgba(0, 0, 0, 0.06) 0 1px, transparent 1px 18px);
+  mix-blend-mode: overlay;
+}
+
+.frame::after {
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.4),
+    inset 0 -34px 74px rgba(0, 0, 0, 0.07);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: 0.67rem "IBM Plex Mono", monospace;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transform: translateX(2px) rotate(-0.4deg);
+}
+
+.phase-id {
+  opacity: 0.74;
+  transform: translateY(-1px) skewX(-8deg);
+}
+
+.back {
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.6);
+  padding: 0.36rem 0.64rem;
+  transition: background 170ms ease, transform 170ms ease;
+}
+
+.back:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px) rotate(-0.3deg);
+}
+
+.hero {
+  max-width: 86ch;
+  position: relative;
+  transform: rotate(0.4deg);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 16%;
+  width: clamp(120px, 16vw, 220px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.36), transparent);
+  transform: rotate(-6deg);
+}
+
+.kicker {
+  margin: 0;
+  font: 0.64rem "IBM Plex Mono", monospace;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(18, 18, 16, 0.76);
+  transform: translateX(-3px) rotate(-0.9deg);
+}
+
+.broken-title {
+  margin: 0.44rem 0 0;
+  font-family: "Cormorant Garamond", serif;
+  line-height: 0.74;
+  text-transform: uppercase;
+  color: #11110f;
+  text-shadow:
+    -1px 0 rgba(255, 255, 255, 0.46),
+    2px 0 rgba(0, 0, 0, 0.13);
+  width: min(850px, 100%);
+}
+
+.broken-title .shard {
+  display: block;
+  position: relative;
+  width: fit-content;
+  transform-origin: left center;
+  mix-blend-mode: multiply;
+}
+
+.broken-title .shard-a {
+  font-size: clamp(3.4rem, 9vw, 8.5rem);
+  transform: translateX(-4px) rotate(-1.4deg) skewX(-3deg);
+  clip-path: polygon(0 0, 100% 0, 94% 86%, 0 100%);
+}
+
+.broken-title .shard-b {
+  font-size: clamp(2.2rem, 6.8vw, 6rem);
+  margin-top: -0.14em;
+  margin-left: clamp(16px, 6vw, 110px);
+  transform: rotate(1.6deg) skewX(4deg);
+  clip-path: polygon(6% 0, 100% 6%, 92% 96%, 0 90%);
+}
+
+.broken-title .shard-c {
+  font-size: clamp(3.8rem, 10vw, 9rem);
+  margin-top: -0.17em;
+  margin-left: clamp(-10px, 1.2vw, 20px);
+  transform: rotate(-2.1deg) skewX(-5deg);
+  clip-path: polygon(0 14%, 100% 0, 100% 100%, 8% 90%);
+}
+
+.lede {
+  margin: 0.72rem 0 0;
+  max-width: 60ch;
+  color: var(--muted);
+  font-size: clamp(0.92rem, 1.46vw, 1.06rem);
+  transform: translateX(8px) rotate(-0.5deg);
+  max-width: 49ch;
+}
+
+.deck {
+  min-height: 0;
+  display: block;
+}
+
+.card {
+  position: relative;
+  width: min(760px, 90vw, 56vh);
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--line-soft);
+  background: var(--panel);
+  padding: clamp(0.9rem, 1.5vw, 1.2rem);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform-style: preserve-3d;
+  will-change: transform;
+  --mouse-rot-x: 0deg;
+  --mouse-rot-y: 0deg;
+  --mouse-rot-z: 0deg;
+  --mouse-shift-x: 0px;
+  --mouse-shift-y: 0px;
+  --anti-x: 0px;
+  --anti-y: 0px;
+  --anti-r: 0deg;
+  transform:
+    perspective(920px)
+    translate(
+      calc(18px + var(--mouse-shift-x)),
+      calc(12px + var(--mouse-shift-y))
+    )
+    rotate(calc(2.6deg + var(--mouse-rot-z)))
+    skewX(-2deg)
+    rotateX(var(--mouse-rot-x))
+    rotateY(var(--mouse-rot-y));
+  clip-path: polygon(1% 4%, 96% 0, 100% 17%, 98% 93%, 87% 100%, 4% 97%, 0 76%);
+}
+
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.card::before {
+  inset: 0;
+  background:
+    linear-gradient(147deg, rgba(255, 255, 255, 0.62), transparent 42%, rgba(0, 0, 0, 0.1)),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.05) 0 1px, transparent 1px 7px);
+  opacity: 0.72;
+}
+
+.card::after {
+  width: 42%;
+  height: 9px;
+  left: -8%;
+  top: 10px;
+  background: rgba(255, 255, 255, 0.38);
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  transform: rotate(-7deg);
+}
+
+.card-links::before {
+  background:
+    linear-gradient(147deg, rgba(255, 255, 255, 0.62), transparent 42%, rgba(0, 0, 0, 0.1)),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.05) 0 1px, transparent 1px 7px),
+    linear-gradient(170deg, rgba(0, 0, 0, 0.06) 0 11%, transparent 11% 89%, rgba(0, 0, 0, 0.08) 89% 100%);
+}
+
+.card-links {
+  filter: contrast(1.04) saturate(1.08);
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card h2 {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.6rem, 2.1vw, 2.15rem);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.broken-subtitle {
+  display: grid;
+  width: fit-content;
+  line-height: 0.88;
+}
+
+.broken-subtitle span:first-child {
+  font-size: clamp(1.2rem, 1.9vw, 2rem);
+  transform: rotate(-1.8deg);
+  letter-spacing: 0.08em;
+}
+
+.broken-subtitle span:last-child {
+  font-size: clamp(1.8rem, 2.9vw, 3rem);
+  margin-top: -0.12em;
+  margin-left: 0.48em;
+  transform: rotate(2.6deg) skewX(-4deg);
+  letter-spacing: 0.05em;
+}
+
+.card ul {
+  margin: 1.08rem 0 0;
+  margin-left: clamp(0.8rem, 1.6vw, 1.25rem);
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card li {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(46px, 140px) 1fr;
+  align-items: baseline;
+  gap: 0.82rem;
+  padding: 0.34rem 0;
+  border-top: 1px solid var(--line-soft);
+  --label-size: 0.62rem;
+  --label-shift: 0px;
+  --value-shift: 0px;
+  --line-x: 0px;
+  --line-y: 0px;
+  --line-r: 0deg;
+  --micro-y: 0px;
+  --micro-r: 0deg;
+  transform:
+    translateX(calc(var(--line-x) + var(--anti-x)))
+    translateY(calc(var(--line-y) + var(--anti-y) + var(--micro-y)))
+    rotate(calc(var(--line-r) + var(--anti-r) + var(--micro-r)));
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.card li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.card li:nth-child(1) {
+  --line-x: 8px;
+  --line-r: -1.4deg;
+  margin-top: 0.14rem;
+  --label-size: 0.55rem;
+  --label-shift: -2px;
+  --value-shift: 1px;
+}
+
+.card li:nth-child(2) {
+  --line-x: 34px;
+  --line-r: 1.2deg;
+  margin-top: 2.28rem;
+  --label-size: 0.8rem;
+  --label-shift: 2px;
+  --value-shift: -1px;
+}
+
+.card li:nth-child(3) {
+  --line-x: 2px;
+  --line-r: -2.1deg;
+  margin-top: 1.34rem;
+  --label-size: 0.62rem;
+  --label-shift: 4px;
+  --value-shift: -2px;
+}
+
+.card li:nth-child(4) {
+  --line-x: 44px;
+  --line-r: 1.8deg;
+  margin-top: 2.62rem;
+  --label-size: 0.72rem;
+  --label-shift: -4px;
+  --value-shift: 2px;
+}
+
+.card li:nth-child(5) {
+  --line-x: 10px;
+  --line-r: -1.1deg;
+  margin-top: 1.58rem;
+  --label-size: 0.58rem;
+  --label-shift: 3px;
+  --value-shift: -1px;
+}
+
+.card li:nth-child(6) {
+  --line-x: 30px;
+  --line-r: 1.5deg;
+  margin-top: 2.06rem;
+  --label-size: 0.76rem;
+  --label-shift: -3px;
+  --value-shift: 1px;
+}
+
+.card li:nth-child(7) {
+  --line-x: -1px;
+  --line-r: -2.3deg;
+  margin-top: 1.72rem;
+  --label-size: 0.67rem;
+  --label-shift: 1px;
+  --value-shift: -2px;
+}
+
+.card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: clamp(10px, 2vw, 16px);
+  height: 1px;
+  background: rgba(0, 0, 0, 0.34);
+}
+
+.card span {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: var(--label-size);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(18, 18, 16, 0.64);
+  transform: translateY(var(--label-shift)) skewX(-10deg);
+}
+
+.card a {
+  font-size: clamp(0.98rem, 1.22vw, 1.02rem);
+  color: var(--ink);
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  transform: translateY(var(--value-shift));
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.card li:nth-child(4) a,
+.card li:nth-child(7) a {
+  letter-spacing: 0.01em;
+}
+
+.card a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: rgba(18, 18, 16, 0.56);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease;
+}
+
+.card a:hover {
+  transform: translateY(var(--value-shift)) translateX(2px);
+  opacity: 0.9;
+}
+
+.card a:hover::after {
+  transform: scaleX(1);
+}
+
+.split-text {
+  text-shadow:
+    var(--split-x-neg) var(--split-y-neg) 0 rgba(255, 56, 112, 0.5),
+    var(--split-x-pos) var(--split-y-pos) 0 rgba(60, 224, 255, 0.52);
+}
+
+.legal {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.7rem;
+  font: 0.62rem "IBM Plex Mono", monospace;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(18, 18, 16, 0.56);
+}
+
+.legal p {
+  margin: 0;
+}
+
+@media (max-width: 980px) {
+  body {
+    overflow: auto;
+  }
+
+  .logo-orb {
+    width: clamp(200px, 40vw, 320px);
+    right: -84px;
+    top: 72px;
+    opacity: 0.1;
+  }
+
+  .frame {
+    height: auto;
+    min-height: calc(100% - 1rem);
+    margin: 0.5rem auto;
+    transform: rotate(-0.2deg);
+  }
+
+  .hero::after {
+    width: 100px;
+  }
+}
+
+@media (max-width: 640px) {
+  .frame {
+    width: calc(100% - 0.6rem);
+    padding: 0.8rem;
+    gap: 0.78rem;
+  }
+
+  .phase-id {
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+  }
+
+  .card {
+    width: 100%;
+    aspect-ratio: auto;
+    transform: none;
+    clip-path: none;
+  }
+
+  .card li {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    transform: none;
+    margin-top: 0.34rem;
+  }
+
+  .card ul {
+    margin-left: 0;
+  }
+
+  .split-text {
+    text-shadow:
+      0.7px 0 rgba(255, 56, 112, 0.36),
+      -0.7px 0 rgba(60, 224, 255, 0.38);
+  }
+
+  .card li::before {
+    display: none;
+  }
+
+  .legal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
